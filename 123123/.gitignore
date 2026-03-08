@@ -1,0 +1,31 @@
+# --- 编译输出文件夹 ---
+# 过滤掉截图中的 Debug 目录及其所有生成的 .out, .obj 等文件
+Debug/
+Release/
+bin/
+obj/
+
+# --- 编译器和链接器生成的特定文件 ---
+*.out
+*.map
+*.obj
+*.d
+*.o
+*.lib
+*.a
+*.tmp
+
+# --- CCS Theia / VS Code 临时配置 ---
+.vscode/
+.launches/
+*.log
+.DS_Store
+
+# --- SysConfig 生成的代码 ---
+# 如果你希望每次编译都由 .syscfg 重新生成，可以忽略这个目录
+# 如果你修改了生成的代码，请删除下面这一行
+ti_msp_dl_config.*
+
+# --- 建议保留但可以根据个人习惯忽略的文件 ---
+# targetConfigs/ 包含仿真器配置，通常建议保留以方便他人直接调试
+# .project / .cproject / .settings (老版工程遗留，新版 Theia 选配)
