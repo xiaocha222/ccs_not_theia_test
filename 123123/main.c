@@ -39,14 +39,13 @@ int main(void)
 {
     //初始化定时器
     SysInit();
-    // car_control(1000,1000);//htlr
-
-
+    car_control(1000,1000);
  
     while (1) 
-    {
+    {// 
+        car_control(1000,1000);
 
-        SysRun();
+        // SysRun();
 
     }
 }

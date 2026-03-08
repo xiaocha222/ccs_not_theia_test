@@ -106,19 +106,19 @@ void SysInit(void)
     //// 自己编写的 ////
     /* 应用程序初始化(PID、模块、……) */
     //mpu6050初始化
-    MPU6050_Init();
+    // MPU6050_Init();
 
     //OLED初始化
-    OLED_Init();
+    // OLED_Init();
 
     //按键初始化
-    Key_Init(&ChosStr_Key,GPIO_CHOOSETOPIC_PORT,GPIO_CHOOSETOPIC_Confirm_PIN);
-    Key_Init(&Confr_Key,GPIO_CHOOSETOPIC_PORT,GPIO_CHOOSETOPIC_ChooseStart_PIN);
+    // Key_Init(&ChosStr_Key,GPIO_CHOOSETOPIC_PORT,GPIO_CHOOSETOPIC_Confirm_PIN);
+    // Key_Init(&Confr_Key,GPIO_CHOOSETOPIC_PORT,GPIO_CHOOSETOPIC_ChooseStart_PIN);
     
     //pid参数初始化
     pid_Init();
 
-    error_sotp();
+    // error_sotp();
 
 }
 
