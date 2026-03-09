@@ -16,7 +16,7 @@ obj/
 *.tmp
 
 # --- CCS Theia / VS Code 临时配置 ---
-.vscode/
+# .vscode/
 .launches/
 *.log
 .DS_Store

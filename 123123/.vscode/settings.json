@@ -1,0 +1,7 @@
+{
+    "clangd.arguments": [
+        "--query-driver=D:/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS/bin/*",
+        "--compile-commands-dir=d:/CCS/WORKSPACR/123123/Debug/.clangd",
+        "--log=verbose"
+    ]
+}
