@@ -1,4 +1,5 @@
 #include "motor.h"
+#include "hc_hal_motor.h"
 
 //定义电机结构体变量【在control中定义了】
 //struct _Motor left_Motor,right_Motor = {0};
@@ -18,48 +19,39 @@
  */
 void car_control(int A, int B)
 {
-    //左轮
-	if (A > 0)	//正转
+    // 左轮方向控制
+	if (A > 0)	// 正转
 	{
-
-		DL_GPIO_setPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN1_PIN);
-        DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN2_PIN);
+        hc_hal_motor_set_dir(HC_MOTOR_ID_LEFT, HC_MOTOR_DIR_FORWARD);
 	}              
-	else if (A < 0)		//反转
+	else if (A < 0)		// 反转
 	{
 		A = -A;
-		DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN1_PIN);
-		DL_GPIO_setPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN2_PIN);
+        hc_hal_motor_set_dir(HC_MOTOR_ID_LEFT, HC_MOTOR_DIR_REVERSE);
 	}
     else 
     {
-        DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN1_PIN);
-		DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN2_PIN);
+        hc_hal_motor_set_dir(HC_MOTOR_ID_LEFT, HC_MOTOR_DIR_STOP);
     }    
 	
-    //右轮
+    // 右轮方向控制
 	if (B > 0)
 	{
-
-		DL_GPIO_setPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN1_PIN);
-        DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN2_PIN);
+        hc_hal_motor_set_dir(HC_MOTOR_ID_RIGHT, HC_MOTOR_DIR_FORWARD);
 	}
 	else if (B < 0)
 	{
 		B = -B;
-        DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN1_PIN);
-		DL_GPIO_setPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN2_PIN);
-
+        hc_hal_motor_set_dir(HC_MOTOR_ID_RIGHT, HC_MOTOR_DIR_REVERSE);
 	}
 	else 
     {
-        DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN1_PIN);
-		DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN2_PIN);
+        hc_hal_motor_set_dir(HC_MOTOR_ID_RIGHT, HC_MOTOR_DIR_STOP);
     }
     
-	//改变占空比输出 [0, 2000]
-    DL_TimerG_setCaptureCompareValue(Motor_PWM_INST, 2000 - A, DL_TIMER_CC_0_INDEX);    //这个2000是PWM周期
-    DL_TimerG_setCaptureCompareValue(Motor_PWM_INST, 2000 - B, DL_TIMER_CC_1_INDEX);
+	// 改变占空比输出 [0, 2000]
+    hc_hal_motor_set_pwm(HC_MOTOR_ID_LEFT, A);
+    hc_hal_motor_set_pwm(HC_MOTOR_ID_RIGHT, B);
 }
 
 /**
@@ -69,9 +61,6 @@ void car_control(int A, int B)
  **/
 void car_stop(void)
 {
-	DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN1_PIN);
-	DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_left_IN2_PIN);
-	
-	DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN1_PIN);
-	DL_GPIO_clearPins(GPIO_MOTOR_CONTROL_PORT, GPIO_MOTOR_CONTROL_right_IN2_PIN);
+    hc_hal_motor_set_dir(HC_MOTOR_ID_LEFT, HC_MOTOR_DIR_STOP);
+    hc_hal_motor_set_dir(HC_MOTOR_ID_RIGHT, HC_MOTOR_DIR_STOP);
 }
