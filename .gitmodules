@@ -1,0 +1,3 @@
+[submodule "123123/Libs/Team_Code"]
+	path = 123123/Libs/Team_Code
+	url = https://gitee.com/hc-team/hc-mcu-hal.git
