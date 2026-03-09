@@ -2,6 +2,7 @@
 
 CompileFlags:
    CompilationDatabase: Debug/.clangd
+   Add: ["--target=armv7m-none-eabi", "-Wno-everything"]
 
 Diagnostics:
    Suppress: '*'
